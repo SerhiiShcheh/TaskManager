@@ -1,1 +1,18 @@
-<p>signin works!</p>
+<h1>Log In</h1>
+<form [formGroup]="signinForm">
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email" required autocomplete="off">
+    <mat-error *ngIf="signinFormControls.email.errors && signinFormControls.email.errors.required">Email is required!</mat-error>
+    <mat-error *ngIf="signinFormControls.email.errors && signinFormControls.email.errors.email && !signinFormControls.email.errors.required">Write correct email!</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Password" formControlName="password" type="password" required autocomplete="off">
+    <mat-error *ngIf="signinFormControls.password.errors && signinFormControls.password.errors.required">Password is required!</mat-error>
+    <mat-error *ngIf="signinFormControls.password.errors && signinFormControls.password.errors.minlength && !signinFormControls.password.errors.required">Password should be at least 8 characters long!</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button [disabled]="signinForm.invalid" color="accent">Sign In</button>
+</form>
+<p>Dont have an account yet?</p>
+<button mat-button color="primary" routerLink="/login/signup">Sign Up</button>

@@ -1,1 +1,36 @@
-<p>signup works!</p>
+<h1>Create an account</h1>
+<form [formGroup]="signupForm">
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email" required autocomplete="off">
+    <mat-error *ngIf="signupFormControls.email.errors && signupFormControls.email.errors.required">Email is required!</mat-error>
+    <mat-error *ngIf="signupFormControls.email.errors && signupFormControls.email.errors.email && !signupFormControls.email.errors.required">Write correct email!</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="First name" formControlName="firstName" required autocomplete="off">
+    <mat-error *ngIf="signupFormControls.firstName.errors && signupFormControls.firstName.errors.required">First Name is required!</mat-error>
+    <mat-error *ngIf="signupFormControls.firstName.errors && signupFormControls.firstName.errors.name && !signupFormControls.firstName.errors.required">You cannot use numbers and whitespaces!</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Last name" formControlName="lastName" required autocomplete="off">
+    <mat-error *ngIf="signupFormControls.lastName.errors && signupFormControls.lastName.errors.required">Last Name is required!</mat-error>
+    <mat-error *ngIf="signupFormControls.lastName.errors && signupFormControls.lastName.errors.name && !signupFormControls.lastName.errors.required">You cannot use numbers and whitespaces!</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Password" formControlName="password" type="password" required autocomplete="off">
+    <mat-error *ngIf="signupFormControls.password.errors && signupFormControls.password.errors.required">Password is required!</mat-error>
+    <mat-error *ngIf="signupFormControls.password.errors && signupFormControls.password.errors.minlength && !signupFormControls.password.errors.required">Password should be at least 8 characters long!</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Confirm Password" formControlName="confirmPassword" type="password" required autocomplete="off" pattern="{{ signupFormControls.password.value }}">
+    <mat-error *ngIf="signupFormControls.confirmPassword.errors && signupFormControls.confirmPassword.errors.required">Confirm Password is required!</mat-error>
+    <mat-error *ngIf="signupFormControls.confirmPassword.errors && signupFormControls.confirmPassword.errors.pattern && !signupFormControls.confirmPassword.errors.required">Passwords must match!</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button [disabled]="signupForm.invalid" color="accent">Sign Up</button>
+</form>
+<p>Already have an account?</p>
+<button mat-button color="primary" routerLink="/login">Sign In</button>
