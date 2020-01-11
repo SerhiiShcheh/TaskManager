@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"taskmanager6222b593": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}

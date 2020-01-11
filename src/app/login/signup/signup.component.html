@@ -30,7 +30,7 @@
     <mat-error *ngIf="signupFormControls.confirmPassword.errors && signupFormControls.confirmPassword.errors.pattern && !signupFormControls.confirmPassword.errors.required">Passwords must match!</mat-error>
   </mat-form-field>
 
-  <button mat-raised-button [disabled]="signupForm.invalid" color="accent">Sign Up</button>
+  <button mat-raised-button [disabled]="signupForm.invalid" color="accent" (click)="this.signUp()">Sign Up</button>
 </form>
 <p>Already have an account?</p>
 <button mat-button color="primary" routerLink="/login">Sign In</button>

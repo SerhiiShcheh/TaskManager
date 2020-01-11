@@ -12,7 +12,7 @@
     <mat-error *ngIf="signinFormControls.password.errors && signinFormControls.password.errors.minlength && !signinFormControls.password.errors.required">Password should be at least 8 characters long!</mat-error>
   </mat-form-field>
 
-  <button mat-raised-button [disabled]="signinForm.invalid" color="accent">Sign In</button>
+  <button mat-raised-button [disabled]="signinForm.invalid" color="accent" (click)="this.signIn()">Sign In</button>
 </form>
 <p>Dont have an account yet?</p>
 <button mat-button color="primary" routerLink="/login/signup">Sign Up</button>

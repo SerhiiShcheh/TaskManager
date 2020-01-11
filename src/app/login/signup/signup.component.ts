@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators, ValidatorFn, AbstractControl, FormBuilder } from '@angular/forms';
 import { CustomValidatorsService } from '../../custom-validators.service';
+import { AmplifyService } from 'aws-amplify-angular';
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +14,7 @@ export class SignupComponent implements OnInit {
   emailRegExp = /^[a-z0-9!#\$%&'\*\+\-\/=\?\^_`{\|}~]+(\.[a-z0-9!#\$%&'\*\+\-\/=\?\^_`{\|}~]+)*@[a-z0-9]+(\.[a-z0-9]+)*$/i;
   nameRegExp = /^[^\d\s]+$/i;
   passwordRegExp = /^\w+$/i;
-  constructor(private formBuilder: FormBuilder, private customValidators: CustomValidatorsService) { }
+  constructor(private formBuilder: FormBuilder, private customValidators: CustomValidatorsService, private amplifyService: AmplifyService) { }
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
@@ -28,4 +29,21 @@ export class SignupComponent implements OnInit {
   get signupFormControls() {
     return this.signupForm.controls;
   }
+
+  signUp() {
+    const values = this.signupForm.value;
+    this.amplifyService.auth().signUp({
+      username: values.email,
+      password: values.password,
+      attributes: {
+        'custom:firstName': values.firstName,
+        'custom:lastName':values.lastName,
+      }
+    }).then(() => {
+      console.log('success!!!');
+    }).catch(() => {
+      console.log('error(');
+    });
+  }
+
 }
