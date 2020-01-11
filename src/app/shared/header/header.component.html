@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" role="heading" class="mat-elevation-z6">
   <h1>Task Manager</h1>
   <div class="flex-spacer"></div>
-  <span>{{this.currentUser.attributes['custom:firstName']}} {{this.currentUser.attributes['custom:lastName']}}</span>
+  <span class="username">{{this.currentUser.attributes['custom:firstName']}} {{this.currentUser.attributes['custom:lastName']}}</span>
   <a mat-button (click)="this.signOut()">Log out</a>
 </mat-toolbar>

@@ -1,6 +1,8 @@
-<div *ngIf="currentUser; else LoginLayout">
+<div *ngIf="currentUser; else LoginLayout" class="page-wrapper">
   <app-header [currentUser]="currentUser"></app-header>
-  <router-outlet></router-outlet>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
   <app-footer></app-footer>
 </div>
 <ng-template #LoginLayout>

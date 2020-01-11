@@ -1,3 +1,13 @@
 .flex-spacer {
-  flex-grow: 1  
+  flex-grow: 1
+}
+
+.username {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .username {
+    display: unset;
+  }
 }
