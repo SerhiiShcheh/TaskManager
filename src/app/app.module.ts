@@ -8,6 +8,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +24,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     AmplifyAngularModule,
+    MatToolbarModule,
+    MatButtonModule,
   ],
   providers: [
     AmplifyService,

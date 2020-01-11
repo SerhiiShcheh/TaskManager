@@ -1,5 +1,5 @@
 <div *ngIf="currentUser; else LoginLayout">
-  <app-header></app-header>
+  <app-header [currentUser]="currentUser"></app-header>
   <router-outlet></router-outlet>
   <app-footer></app-footer>
 </div>

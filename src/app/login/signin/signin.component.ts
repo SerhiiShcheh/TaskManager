@@ -27,7 +27,6 @@ export class SigninComponent implements OnInit {
       email: ['', [Validators.required, this.customValidators.customRegExpBasedValidator(this.emailRegExp, {email: 'error'})]],
       password: ['', [Validators.required, Validators.minLength(8), this.customValidators.customRegExpBasedValidator(this.passwordRegExp, {password: 'error'})]],
     });
-    this.amplifyService.auth().currentAuthenticatedUser().then(user => console.log(user.attributes.email));
   }
 
   get signinFormControls() {
