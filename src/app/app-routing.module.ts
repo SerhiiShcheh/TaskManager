@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-
+import { AuthCanActivateGuard } from './guards/auth-can-activate.guard';
+import { LoginCanActivateGuard } from './guards/login-can-activate.guard';
 
 const routes: Routes = [
   {
@@ -11,10 +12,12 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then(mod => mod.DashboardModule),
+    canActivate: [AuthCanActivateGuard],
   },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(mod => mod.LoginModule),
+    canActivate: [LoginCanActivateGuard],
   }
 ];
 
