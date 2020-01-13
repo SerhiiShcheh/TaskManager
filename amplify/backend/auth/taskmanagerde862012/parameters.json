@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "taskmanager6222b593_identitypool_6222b593",
+    "identityPoolName": "taskmanagerde862012_identitypool_de862012",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "taskma6222b593",
-    "userPoolName": "taskmanager6222b593_userpool_6222b593",
+    "resourceNameTruncated": "taskmade862012",
+    "userPoolName": "taskmanagerde862012_userpool_de862012",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,9 +28,9 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "taskma6222b593_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "taskmade862012_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "taskmanager6222b593",
+    "resourceName": "taskmanagerde862012",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -48,11 +48,6 @@
     "usernameAttributes": [
         "email"
     ],
-    "triggers": "{}",
     "userPoolGroupList": [],
-    "parentStack": {
-        "Ref": "AWS::StackId"
-    },
-    "permissions": [],
     "dependsOn": []
 }

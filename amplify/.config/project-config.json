@@ -7,7 +7,7 @@
         "config": {
             "SourceDir": "src",
             "DistributionDir": "dist",
-            "BuildCommand": "",
+            "BuildCommand": "npm.cmd run-script build",
             "StartCommand": "ng serve"
         }
     },

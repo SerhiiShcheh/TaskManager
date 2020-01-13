@@ -1,19 +1,19 @@
 {
-    "tmenv": {
+    "env": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-taskmanager-tmenv-200301-authRole",
-            "UnauthRoleArn": "arn:aws:iam::726693098167:role/amplify-taskmanager-tmenv-200301-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::726693098167:role/amplify-taskmanager-tmenv-200301-authRole",
+            "AuthRoleName": "amplify-taskmanager-env-194906-authRole",
+            "UnauthRoleArn": "arn:aws:iam::726693098167:role/amplify-taskmanager-env-194906-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::726693098167:role/amplify-taskmanager-env-194906-authRole",
             "Region": "eu-central-1",
-            "DeploymentBucketName": "amplify-taskmanager-tmenv-200301-deployment",
-            "UnauthRoleName": "amplify-taskmanager-tmenv-200301-unauthRole",
-            "StackName": "amplify-taskmanager-tmenv-200301",
-            "StackId": "arn:aws:cloudformation:eu-central-1:726693098167:stack/amplify-taskmanager-tmenv-200301/72b17550-33d3-11ea-be4d-06247d577dba",
-            "AmplifyAppId": "d2685qevkrbpdq"
+            "DeploymentBucketName": "amplify-taskmanager-env-194906-deployment",
+            "UnauthRoleName": "amplify-taskmanager-env-194906-unauthRole",
+            "StackName": "amplify-taskmanager-env-194906",
+            "StackId": "arn:aws:cloudformation:eu-central-1:726693098167:stack/amplify-taskmanager-env-194906/007901e0-362d-11ea-bffd-0ab3055dd4ce",
+            "AmplifyAppId": "d1x65sm5fhuv11"
         },
         "categories": {
             "auth": {
-                "taskmanager6222b593": {}
+                "taskmanagerde862012": {}
             }
         }
     }
