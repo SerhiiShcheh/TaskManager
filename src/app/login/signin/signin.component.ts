@@ -4,12 +4,12 @@ import { Validators, ValidatorFn, AbstractControl, FormBuilder } from '@angular/
 import { CustomValidatorsService } from '../../custom-validators.service';
 import { AmplifyService } from 'aws-amplify-angular';
 import { Router } from '@angular/router';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],
-  providers: [CustomValidatorsService],
 })
 export class SigninComponent implements OnInit {
   signinForm: FormGroup;
@@ -19,7 +19,8 @@ export class SigninComponent implements OnInit {
     private formBuilder: FormBuilder,
     private customValidators: CustomValidatorsService,
     private amplifyService: AmplifyService,
-    private router: Router
+    private router: Router,
+    private dataService: DataService,
   ) {}
 
   ngOnInit() {
@@ -40,6 +41,8 @@ export class SigninComponent implements OnInit {
       password: values.password
     }).then(res => {
       console.log(res);
+      let user = this.amplifyService.auth().user;
+      this.dataService.updateUsersInDB(user);
       this.router.navigate(['./']);
     }).catch(err => {
       console.log(err);

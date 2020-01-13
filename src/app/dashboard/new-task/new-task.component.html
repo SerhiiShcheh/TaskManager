@@ -1,0 +1,10 @@
+<h1>Create task</h1>
+<form [formGroup]="createNewTaskForm">
+  <mat-form-field>
+    <input matInput placeholder="Task Name" formControlName="taskName" required autocomplete="off">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="Task Desctiption" formControlName="taskDescription" autocomplete="off"></textarea>
+  </mat-form-field>
+  <button mat-raised-button [disabled]="createNewTaskForm.invalid" color="accent" (click)="this.addTask()">Create</button>
+</form>

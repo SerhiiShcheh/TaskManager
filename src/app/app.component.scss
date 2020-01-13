@@ -2,7 +2,18 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding-top: 56px;
+  box-sizing: border-box;
+  app-header {
+    z-index: 1;
+  }
   main {
     flex-grow: 1;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .page-wrapper {
+    padding-top: 64px;
   }
 }

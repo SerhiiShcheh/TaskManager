@@ -1,4 +1,4 @@
-<div *ngIf="currentUser; else LoginLayout" class="page-wrapper">
+<div *ngIf="checkUser(); else LoginLayout" class="page-wrapper">
   <app-header [currentUser]="currentUser"></app-header>
   <main>
     <router-outlet></router-outlet>

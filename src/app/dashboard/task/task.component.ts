@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
+import { CustomValidatorsService } from '../../custom-validators.service';
 
 @Component({
   selector: 'app-task',
@@ -11,5 +13,5 @@ export class TaskComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
 }

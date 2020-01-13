@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AmplifyService } from 'aws-amplify-angular';
-
+import { DataService } from './data.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,10 +11,19 @@ export class AppComponent implements OnInit, OnDestroy {
   currentUser = null;
   authStateSubscription;
 
-  constructor(private amplifyService: AmplifyService) {}
+  constructor(private amplifyService: AmplifyService, private dataService: DataService) {}
 
   ngOnInit() {
     this.subscribeAuthState();
+    this.dataService.initStorage();
+  }
+
+  checkUser() {
+    let user = this.amplifyService.auth().user;
+    if (user) {
+      return true;
+    }
+    return false;
   }
 
   ngOnDestroy() {

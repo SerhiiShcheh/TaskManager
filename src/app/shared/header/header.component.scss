@@ -6,6 +6,13 @@
   display: none;
 }
 
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
 @media screen and (min-width: 768px) {
   .username {
     display: unset;

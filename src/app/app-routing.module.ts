@@ -8,6 +8,7 @@ const routes: Routes = [
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full',
+    canActivate: [AuthCanActivateGuard],
   },
   {
     path: 'dashboard',

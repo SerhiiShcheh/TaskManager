@@ -1,1 +1,24 @@
-<p>dashboard works!</p>
+<section>
+  <mat-toolbar color="primary">
+    <span>My tasks</span>
+    <a mat-raised-button color="accent" routerLink="task/new">Add new</a>
+  </mat-toolbar>
+  <article>
+    <div class="tasks-wrapper">
+      
+      <h1 *ngIf="tasks.length == 0">Your task list is empty</h1>
+
+      <mat-card *ngFor="let item of tasks; index as i" routerLink="task/{{i}}">
+        <div class="main-info">
+          <p class="task-name">{{item.taskName}}</p>
+          <div class="date-wrapper">
+            <p>{{item.date.getHours()}}:{{item.date.getMinutes()}}</p>
+            <p>{{item.date.getDate()}}.{{item.date.getMonth()+1}}.{{item.date.getFullYear()}}</p>
+          </div>
+        </div>
+        <p *ngIf="item.receivedFrom" class="received-p">Received from {{item.receivedFrom}}</p>
+      </mat-card>
+
+    </div>
+  </article>
+</section>

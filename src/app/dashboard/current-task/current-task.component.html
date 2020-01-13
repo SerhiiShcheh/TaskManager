@@ -1,0 +1,21 @@
+<h1>Task</h1>
+<form [formGroup]="taskForm">
+  <mat-form-field>
+    <input matInput placeholder="Task Name" formControlName="taskName" required autocomplete="off" [(ngModel)]="this.task.taskName">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="Task Desctiption" formControlName="taskDescription" autocomplete="off" [(ngModel)]="this.task.taskDescription"></textarea>
+  </mat-form-field>
+  <button mat-raised-button [disabled]="!taskForm.touched" color="accent" (click)="this.updateTask()">Update</button>
+</form>
+<form [formGroup]="shareTaskForm">
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email" required autocomplete="off">
+    <mat-error *ngIf="shareTaskFormControls.email.errors && shareTaskFormControls.email.errors.required">Email is required!</mat-error>
+    <mat-error *ngIf="shareTaskFormControls.email.errors && shareTaskFormControls.email.errors.email && !shareTaskFormControls.email.errors.required">Write correct email!</mat-error>
+  </mat-form-field>
+  <button mat-raised-button [disabled]="shareTaskForm.invalid" color="accent" (click)="this.shareTask()">Share</button>
+</form>
+<p>Created: 14:50 12.01.20</p>
+<p>Received from: Oleh JJJ</p>
+<button mat-button color="warn" (click)="this.deleteTask()">Delete</button>
