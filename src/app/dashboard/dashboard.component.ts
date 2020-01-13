@@ -9,9 +9,11 @@ import { AmplifyService } from 'aws-amplify-angular';
 })
 export class DashboardComponent implements OnInit {
   tasks: any;
-  dayRegExp = /\d{4}-\d{2}-\d{2}/;
-  timeRegExp = /\d{}/
-  constructor(private dataService: DataService, private amplifyService: AmplifyService) { }
+
+  constructor(
+    private dataService: DataService,
+    private amplifyService: AmplifyService
+  ) { }
 
   ngOnInit() {
     let userEmail = this.amplifyService.auth().user.attributes.email;

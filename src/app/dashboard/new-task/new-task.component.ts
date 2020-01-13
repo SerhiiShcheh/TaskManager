@@ -11,7 +11,12 @@ import { Router } from '@angular/router';
 })
 export class NewTaskComponent implements OnInit {
   createNewTaskForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private dataService: DataService, private amplifyService: AmplifyService, private router: Router) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private dataService: DataService,
+    private amplifyService: AmplifyService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.createNewTaskForm = this.formBuilder.group({

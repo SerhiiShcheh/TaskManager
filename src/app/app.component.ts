@@ -11,7 +11,10 @@ export class AppComponent implements OnInit, OnDestroy {
   currentUser = null;
   authStateSubscription;
 
-  constructor(private amplifyService: AmplifyService, private dataService: DataService) {}
+  constructor(
+    private amplifyService: AmplifyService,
+    private dataService: DataService
+  ) {}
 
   ngOnInit() {
     this.subscribeAuthState();

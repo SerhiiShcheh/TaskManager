@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { CustomValidatorsService } from '../../custom-validators.service';
 import { DataService } from '../../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -62,6 +62,7 @@ export class CurrentTaskComponent implements OnInit {
     let email = this.shareTaskForm.controls.email.value;
     let userEmail = this.amplifyService.auth().user.attributes.email;
     this.dataService.shareTask(email, userEmail, this.task);
+    this.router.navigate(['/']);
   }
 
   get taskFormControls() {

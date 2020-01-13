@@ -10,7 +10,10 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   @Input() currentUser: any;
 
-  constructor(private amplifyService: AmplifyService, private router: Router) { }
+  constructor(
+    private amplifyService: AmplifyService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }

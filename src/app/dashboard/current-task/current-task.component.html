@@ -6,7 +6,7 @@
   <mat-form-field>
     <textarea matInput placeholder="Task Desctiption" formControlName="taskDescription" autocomplete="off" [(ngModel)]="this.task.taskDescription"></textarea>
   </mat-form-field>
-  <button mat-raised-button [disabled]="!taskForm.touched" color="accent" (click)="this.updateTask()">Update</button>
+  <button mat-raised-button [disabled]="!taskForm.dirty" color="accent" (click)="this.updateTask()">Update</button>
 </form>
 <form [formGroup]="shareTaskForm">
   <mat-form-field>
