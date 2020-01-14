@@ -3,7 +3,6 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { CustomValidatorsService } from '../../custom-validators.service';
 import { DataService } from '../../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AmplifyService } from 'aws-amplify-angular';
 
 @Component({
   selector: 'app-current-task',
@@ -23,7 +22,6 @@ export class CurrentTaskComponent implements OnInit {
     private customValidators: CustomValidatorsService,
     private dataService: DataService,
     private route: ActivatedRoute,
-    private amplifyService: AmplifyService,
     private router: Router,
   ) { }
 
@@ -42,7 +40,7 @@ export class CurrentTaskComponent implements OnInit {
 
   getTask() {
     this.taskId = this.route.snapshot.paramMap.get('id');
-    this.userEmail = this.amplifyService.auth().user.attributes.email
+    this.userEmail = this.dataService.currentUser.email;
     return this.dataService.getTaskById(this.taskId, this.userEmail);
   }
 
@@ -60,7 +58,7 @@ export class CurrentTaskComponent implements OnInit {
 
   shareTask() {
     let email = this.shareTaskForm.controls.email.value;
-    let userEmail = this.amplifyService.auth().user.attributes.email;
+    let userEmail = this.dataService.currentUser.email;
     this.dataService.shareTask(email, userEmail, this.task);
     this.router.navigate(['/']);
   }

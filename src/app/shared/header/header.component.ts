@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AmplifyService } from 'aws-amplify-angular';
 import { Router } from '@angular/router';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'app-header',
@@ -8,22 +8,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input() currentUser: any;
+  currentUser;
 
   constructor(
-    private amplifyService: AmplifyService,
-    private router: Router
+    private dataService: DataService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
+    this.currentUser = this.dataService.currentUser;
   }
 
   signOut() {
-    this.amplifyService.auth().signOut().then(data => {
-      this.router.navigate(['/login']);
-    }).catch(err => {
-      console.log(err);
-    });
+    this.dataService.signOut();
+    this.router.navigate(['/login']);
   }
 
 }

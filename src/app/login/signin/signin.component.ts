@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators, ValidatorFn, AbstractControl, FormBuilder } from '@angular/forms';
 import { CustomValidatorsService } from '../../custom-validators.service';
-import { AmplifyService } from 'aws-amplify-angular';
 import { Router } from '@angular/router';
 import { DataService } from '../../data.service';
 
@@ -18,7 +17,6 @@ export class SigninComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private customValidators: CustomValidatorsService,
-    private amplifyService: AmplifyService,
     private router: Router,
     private dataService: DataService,
   ) {}
@@ -36,16 +34,10 @@ export class SigninComponent implements OnInit {
 
   signIn() {
     const values = this.signinForm.value;
-    this.amplifyService.auth().signIn({
-      username: values.email,
-      password: values.password
-    }).then(res => {
-      console.log(res);
-      let user = this.amplifyService.auth().user;
-      this.dataService.updateUsersInDB(user);
-      this.router.navigate(['./']);
-    }).catch(err => {
-      console.log(err);
-    })
+    if( this.dataService.signIn(values.email, values.password) ) {
+      this.router.navigate(['/']);
+    } else {
+      alert('invalid credentials!');
+    }
   }
 }

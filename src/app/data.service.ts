@@ -4,19 +4,55 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
-
+  currentUser: any;
   database = {
     users: [],
     tasks: [],
+    currentUser: null,
   };
 
   constructor() { }
+
+  signUp(firstName, lastName, email, password) {
+    let user = new User(firstName, lastName, email, password);
+    let userExists = this.checkUser(email);
+    if (userExists) {
+      return false;
+    }
+    this.updateUsersInDB(user);
+    return true;
+  }
+
+  signIn(email, password) {
+    let user = this.database.users.find((item) => {
+      if (item.email === email) {
+        return true;
+      }
+    });
+    if (!user) {
+        return false;
+    }
+    if (user.password === password) {
+      this.currentUser = user;
+      this.database.currentUser = user;
+      this.updateDB();
+      return true;
+    }
+    return false;
+  }
+
+  signOut() {
+    this.currentUser = null;
+    this.database.currentUser = null;
+    this.updateDB();
+  }
 
   initStorage() {
     if(!window.localStorage.getItem('database')) {
       window.localStorage.setItem('database', JSON.stringify(this.database));
     } else {
       this.database = JSON.parse(window.localStorage.getItem('database'));
+      this.currentUser = this.database.currentUser;
     }
   }
 
@@ -28,6 +64,7 @@ export class DataService {
     let database = {
       users: [],
       tasks: [],
+      currentUser: null
     };
     window.localStorage.setItem('database', JSON.stringify(database));
   }
@@ -89,12 +126,12 @@ export class DataService {
 
   updateUsersInDB(user) {
     let dbUser = this.database.users.find((item) => {
-      if (item.email === user.attributes.email) {
+      if (item.email === user.email) {
         return true;
       }
     });
     if (!dbUser) {
-      let newUser = new User(user.attributes['custom:firstName'], user.attributes['custom:lastName'], user.attributes.email);
+      let newUser = new User(user.firstName, user.lastName, user.email, user.password);
       this.database.users.push(newUser);
       this.updateDB();
     }
@@ -134,10 +171,12 @@ class User {
   firstName;
   lastName;
   email;
-  constructor(firstName, lastName, email) {
+  password;
+  constructor(firstName, lastName, email, password) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
+    this.password = password;
   }
 }
 

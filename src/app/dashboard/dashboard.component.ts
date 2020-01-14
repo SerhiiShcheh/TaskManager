@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { AmplifyService } from 'aws-amplify-angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,12 +10,11 @@ export class DashboardComponent implements OnInit {
   tasks: any;
 
   constructor(
-    private dataService: DataService,
-    private amplifyService: AmplifyService
+    private dataService: DataService
   ) { }
 
   ngOnInit() {
-    let userEmail = this.amplifyService.auth().user.attributes.email;
+    let userEmail = this.dataService.currentUser.email;
     this.tasks = this.dataService.getAllUserTasks(userEmail).map((item) => {
 
       item.date = new Date(item.date);

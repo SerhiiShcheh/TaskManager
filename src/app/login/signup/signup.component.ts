@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators, ValidatorFn, AbstractControl, FormBuilder } from '@angular/forms';
 import { CustomValidatorsService } from '../../custom-validators.service';
-import { AmplifyService } from 'aws-amplify-angular';
 import { Router } from '@angular/router';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'app-signup',
@@ -18,8 +18,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private customValidators: CustomValidatorsService,
-    private amplifyService: AmplifyService,
     private router: Router,
+    private dataService: DataService,
   ) { }
 
   ngOnInit() {
@@ -38,19 +38,12 @@ export class SignupComponent implements OnInit {
 
   signUp() {
     const values = this.signupForm.value;
-    this.amplifyService.auth().signUp({
-      username: values.email,
-      password: values.password,
-      attributes: {
-        'custom:firstName': values.firstName,
-        'custom:lastName':values.lastName,
-      }
-    }).then(() => {
-      console.log('success!!!');
+    let res = this.dataService.signUp(values.firstName, values.lastName, values.email, values.password);
+    if(res) {
       this.router.navigate(['/login']);
-    }).catch(() => {
-      console.log('error(');
-    });
+    } else {
+      alert('This user is already exists!');
+    }
   }
 
 }

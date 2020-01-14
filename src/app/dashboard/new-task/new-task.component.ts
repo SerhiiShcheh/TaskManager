@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms'
 import { DataService } from '../../data.service';
-import { AmplifyService } from 'aws-amplify-angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +13,6 @@ export class NewTaskComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private dataService: DataService,
-    private amplifyService: AmplifyService,
     private router: Router
   ) { }
 
@@ -28,7 +26,7 @@ export class NewTaskComponent implements OnInit {
   addTask() {
     let taskName = this.createNewTaskForm.controls.taskName.value;
     let taskDescription = this.createNewTaskForm.controls.taskDescription.value;
-    let userEmail = this.amplifyService.auth().user.attributes.email;
+    let userEmail = this.dataService.currentUser.email;
     this.dataService.addTask(taskName, taskDescription, userEmail);
     this.router.navigate(['/']);
   }

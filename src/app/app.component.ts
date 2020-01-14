@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AmplifyService } from 'aws-amplify-angular';
 import { DataService } from './data.service';
 @Component({
   selector: 'app-root',
@@ -12,17 +11,16 @@ export class AppComponent implements OnInit, OnDestroy {
   authStateSubscription;
 
   constructor(
-    private amplifyService: AmplifyService,
     private dataService: DataService
   ) {}
 
   ngOnInit() {
-    this.subscribeAuthState();
+    //this.subscribeAuthState();
     this.dataService.initStorage();
   }
 
   checkUser() {
-    let user = this.amplifyService.auth().user;
+    let user = this.dataService.currentUser;
     if (user) {
       return true;
     }
@@ -30,16 +28,16 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.authStateSubscription.unsubscribe();
+    //this.authStateSubscription.unsubscribe();
   }
 
-  private subscribeAuthState() {
-    this.authStateSubscription = this.amplifyService.authStateChange$.subscribe(authState => {
-      if (!authState.user) {
-        this.currentUser = null;
-      } else {
-        this.currentUser = authState.user;
-      }
-    });
-  }
+  // private subscribeAuthState() {
+  //   this.authStateSubscription = this.amplifyService.authStateChange$.subscribe(authState => {
+  //     if (!authState.user) {
+  //       this.currentUser = null;
+  //     } else {
+  //       this.currentUser = authState.user;
+  //     }
+  //   });
+  // }
 }
